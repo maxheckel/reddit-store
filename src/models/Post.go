@@ -8,4 +8,5 @@ type Post struct {
 	Link string
 	Comments []Comment
 	Hash string
+	Subreddit Subreddit
 }
