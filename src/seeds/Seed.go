@@ -7,5 +7,5 @@ type seed interface {
 }
 
 type Seed struct {
-
+	
 }

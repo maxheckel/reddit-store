@@ -5,6 +5,7 @@ import (
 	"seeds"
 	//"fmt"
 	"databaseConn"
+	"fetcher"
 )
 
 func main() {
@@ -15,4 +16,5 @@ func main() {
 		panic("Migrating failed")
 	}
 	seeds.Execute()
+	fetcher.Execute()
 }
