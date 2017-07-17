@@ -1,12 +1,12 @@
 package models
 
-import "github.com/jinzhu/gorm"
 
 type Post struct {
-	gorm.Model
-	Text string
-	Link string
+	Id string
+	Title string
+	Url string
 	Comments []Comment
-	Hash string
-	Subreddit Subreddit
+	Score int
+	SubredditID uint
+	Created float32
 }

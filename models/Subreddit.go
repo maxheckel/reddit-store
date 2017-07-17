@@ -6,5 +6,6 @@ type Subreddit struct {
 	gorm.Model
 	Name string
 	Subreddit string
+	Posts []Post
 }
 
