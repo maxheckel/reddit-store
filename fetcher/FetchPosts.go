@@ -31,7 +31,6 @@ func Execute() {
 		posts := fetchUrl(url, &Posts{})
 		var subreddit = models.Subreddit{}
 		db.Where("subreddit = ?", subredditUri).First(&subreddit)
-		fmt.Println(subreddit.ID)
 		for x := 0; x < threshold; x++ {
 			post := posts.Data.Children[x].Data
 			post.SubredditID = subreddit.ID
