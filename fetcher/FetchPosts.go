@@ -7,7 +7,8 @@ import (
 	"io/ioutil"
 	log "log"
 	"encoding/json"
-	"fmt"
+	"regexp"
+	"sync"
 )
 
 var threshold int = 5
@@ -20,6 +21,7 @@ type Posts struct {
 		}
 	}
 }
+var wg sync.WaitGroup
 
 func Execute() {
 	db := databaseConn.DB{}.GetDB()
@@ -37,8 +39,14 @@ func Execute() {
 			var Post = new(models.Post)
 			db.FirstOrInit(Post, post)
 			db.Create(&Post)
+			matches, _ := regexp.MatchString("jpg|gifv|gif|png", Post.Url)
+			if matches {
+				wg.Add(1)
+				go fetchImage(*Post, &wg)
+			}
 		}
 	}
+	wg.Wait()
 }
 
 
